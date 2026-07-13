@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'tela_principal.dart';
+import 'main_screen.dart';
 
 void main() => runApp(CalculadoraIMC());
 
@@ -25,7 +25,7 @@ class CalculadoraIMC extends StatelessWidget {
           shadowColor: Colors.black,
         ),
       ),
-      home: TelaPrincipal(),
+      home: MainScreen(),
     );
   }
 }
