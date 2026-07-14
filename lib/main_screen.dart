@@ -6,7 +6,10 @@ import 'standard_card.dart';
 
 const heightContainerBottom = 80.0;
 const colorActiveCardStandard = Color(0xff9e9e9e);
+const colorInactiveCardStandard = Color(0xFF6B6B6B);
 const colorContainerBottom = Colors.deepOrange;
+
+enum Sex { male, female, none }
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -16,6 +19,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreen extends State<MainScreen> {
+  Sex colorSelected = Sex.none;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,20 +31,38 @@ class _MainScreen extends State<MainScreen> {
             child: Row(
               children: [
                 Expanded(
-                  child: StandardCard(
-                    color: colorActiveCardStandard,
-                    child: ContentIcon(
-                      icon: FontAwesomeIcons.mars,
-                      textName: 'MASCULINO',
+                  child: GestureDetector(
+                    onTap: () => {
+                      setState(() {
+                        colorSelected = Sex.male;
+                      }),
+                    },
+                    child: StandardCard(
+                      color: colorSelected == Sex.male
+                          ? colorInactiveCardStandard
+                          : colorActiveCardStandard,
+                      child: ContentIcon(
+                        icon: FontAwesomeIcons.mars,
+                        textName: 'MASCULINO',
+                      ),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: StandardCard(
-                    color: colorActiveCardStandard,
-                    child: ContentIcon(
-                      icon: FontAwesomeIcons.venus,
-                      textName: 'FEMININO',
+                  child: GestureDetector(
+                    onTap: () => {
+                      setState(() {
+                        colorSelected = Sex.female;
+                      }),
+                    },
+                    child: StandardCard(
+                      color: colorSelected == Sex.female
+                          ? colorInactiveCardStandard
+                          : colorActiveCardStandard,
+                      child: ContentIcon(
+                        icon: FontAwesomeIcons.venus,
+                        textName: 'FEMININO',
+                      ),
                     ),
                   ),
                 ),
@@ -52,6 +75,7 @@ class _MainScreen extends State<MainScreen> {
                 Expanded(
                   child: StandardCard(
                     color: colorActiveCardStandard,
+                    child: null,
                   ),
                 ),
               ],
@@ -63,11 +87,13 @@ class _MainScreen extends State<MainScreen> {
                 Expanded(
                   child: StandardCard(
                     color: colorActiveCardStandard,
+                    child: null,
                   ),
                 ),
                 Expanded(
                   child: StandardCard(
                     color: colorActiveCardStandard,
+                    child: null,
                   ),
                 ),
               ],

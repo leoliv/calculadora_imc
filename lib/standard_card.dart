@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class StandardCard extends StatelessWidget {
   const StandardCard({
     required this.color,
-    this.child,
+    required this.child,
     super.key,
   });
 
@@ -13,10 +13,10 @@ class StandardCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(20),
+      margin: .all(14),
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: .circular(30),
       ),
       child: child,
     );

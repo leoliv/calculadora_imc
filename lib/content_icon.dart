@@ -22,7 +22,7 @@ class ContentIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: .center,
       children: [
         FaIcon(icon, size: size),
         SizedBox(height: spaceWordsHeight),
