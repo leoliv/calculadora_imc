@@ -1,15 +1,14 @@
+import 'package:calculadora_imc/around_button.dart';
+import 'package:calculadora_imc/consts.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'content_icon.dart';
 import 'standard_card.dart';
 
-const heightContainerBottom = 80.0;
-const colorActiveCardStandard = Color(0xff9e9e9e);
-const colorInactiveCardStandard = Color(0xFF6B6B6B);
-const colorContainerBottom = Colors.deepOrange;
-
 enum Sex { male, female, none }
+
+enum Sinal { plus, minus }
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -31,38 +30,34 @@ class _MainScreen extends State<MainScreen> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () => {
+                  child: StandardCard(
+                    onTap: () {
                       setState(() {
                         colorSelected = Sex.male;
-                      }),
+                      });
                     },
-                    child: StandardCard(
-                      color: colorSelected == Sex.male
-                          ? colorInactiveCardStandard
-                          : colorActiveCardStandard,
-                      child: ContentIcon(
-                        icon: FontAwesomeIcons.mars,
-                        textName: 'MASCULINO',
-                      ),
+                    color: colorSelected == Sex.male
+                        ? kActiveColorStandardCard
+                        : kInactiveColorStandardCard,
+                    child: ContentIcon(
+                      icon: FontAwesomeIcons.mars,
+                      textName: 'MASCULINO',
                     ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () => {
+                  child: StandardCard(
+                    onTap: () {
                       setState(() {
                         colorSelected = Sex.female;
-                      }),
+                      });
                     },
-                    child: StandardCard(
-                      color: colorSelected == Sex.female
-                          ? colorInactiveCardStandard
-                          : colorActiveCardStandard,
-                      child: ContentIcon(
-                        icon: FontAwesomeIcons.venus,
-                        textName: 'FEMININO',
-                      ),
+                    color: colorSelected == Sex.female
+                        ? kActiveColorStandardCard
+                        : kInactiveColorStandardCard,
+                    child: ContentIcon(
+                      icon: FontAwesomeIcons.venus,
+                      textName: 'FEMININO',
                     ),
                   ),
                 ),
@@ -74,8 +69,47 @@ class _MainScreen extends State<MainScreen> {
               children: [
                 Expanded(
                   child: StandardCard(
-                    color: colorActiveCardStandard,
-                    child: null,
+                    onTap: () {},
+                    color: kActiveColorStandardCard,
+                    child: Column(
+                      mainAxisAlignment: .center,
+                      children: [
+                        Text(
+                          'ALTURA',
+                          style: kDescriptionStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: .center,
+                          crossAxisAlignment: .baseline,
+                          textBaseline: .alphabetic,
+                          children: [
+                            Text(
+                              kHeightInCm.toString(),
+                              style: kLargeNumberStyle,
+                            ),
+                            Text(
+                              'cm',
+                              style: kDescriptionStyle,
+                            ),
+                          ],
+                        ),
+                        Slider(
+                          activeColor:
+                              kColorContainerBottom,
+                          inactiveColor:
+                              kInactiveColorStandardCard,
+                          onChanged: (double newValue) => {
+                            setState(() {
+                              kHeightInCm = newValue
+                                  .round();
+                            }),
+                          },
+                          min: 120,
+                          max: 220,
+                          value: kHeightInCm.toDouble(),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -86,24 +120,100 @@ class _MainScreen extends State<MainScreen> {
               children: [
                 Expanded(
                   child: StandardCard(
-                    color: colorActiveCardStandard,
-                    child: null,
+                    onTap: () {},
+                    color: kActiveColorStandardCard,
+                    child: Column(
+                      mainAxisAlignment: .center,
+                      children: [
+                        Text(
+                          "PESO",
+                          style: kDescriptionStyle,
+                        ),
+                        Text(
+                          kWeightInKg.toString(),
+                          style: kLargeNumberStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: .center,
+                          children: [
+                            AroundButton(
+                              onPressed: () => {
+                                setState(() {
+                                  kWeightInKg < 500
+                                      ? kWeightInKg++
+                                      : null;
+                                }),
+                              },
+                              icon: FontAwesomeIcons.plus,
+                            ),
+                            SizedBox(width: 10),
+                            AroundButton(
+                              onPressed: () => {
+                                setState(() {
+                                  kWeightInKg > 0
+                                      ? kWeightInKg--
+                                      : null;
+                                }),
+                              },
+                              icon: FontAwesomeIcons.minus,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: StandardCard(
-                    color: colorActiveCardStandard,
-                    child: null,
+                    onTap: () {},
+                    color: kActiveColorStandardCard,
+                    child: Column(
+                      mainAxisAlignment: .center,
+                      children: [
+                        Text(
+                          "IDADE",
+                          style: kDescriptionStyle,
+                        ),
+                        Text(
+                          kAge.toString(),
+                          style: kLargeNumberStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: .center,
+                          children: [
+                            AroundButton(
+                              onPressed: () => {
+                                setState(() {
+                                  kAge < 120
+                                      ? kAge++
+                                      : null;
+                                }),
+                              },
+                              icon: FontAwesomeIcons.plus,
+                            ),
+                            SizedBox(width: 10),
+                            AroundButton(
+                              onPressed: () => {
+                                setState(() {
+                                  kAge > 0 ? kAge-- : null;
+                                }),
+                              },
+                              icon: FontAwesomeIcons.minus,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
           ),
           Container(
-            color: colorContainerBottom,
+            color: kColorContainerBottom,
             width: double.infinity,
-            height: heightContainerBottom,
-            margin: EdgeInsets.only(top: 10),
+            height: kHeightContainerBottom,
+            margin: .only(top: 10),
           ),
         ],
       ),

@@ -1,3 +1,4 @@
+import 'package:calculadora_imc/consts.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -9,7 +10,6 @@ class ContentIcon extends StatelessWidget {
     this.spaceWordsHeight = 15.0,
     required this.textName,
     this.fontSize = 20.0,
-    this.color = Colors.black54,
   });
 
   final FaIconData icon;
@@ -17,7 +17,6 @@ class ContentIcon extends StatelessWidget {
   final double spaceWordsHeight;
   final String textName;
   final double fontSize;
-  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +25,7 @@ class ContentIcon extends StatelessWidget {
       children: [
         FaIcon(icon, size: size),
         SizedBox(height: spaceWordsHeight),
-        Text(
-          textName,
-          style: TextStyle(
-            fontSize: fontSize,
-            color: color,
-          ),
-        ),
+        Text(textName, style: kDescriptionStyle),
       ],
     );
   }
