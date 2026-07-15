@@ -12,12 +12,14 @@ class CalculadoraIMC extends StatelessWidget {
     final colorScheme = ColorScheme.dark(
       primary: corCinza,
       onPrimary: Colors.white,
+      onSecondary: Colors.white,
       secondaryContainer: Colors.brown,
     );
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
         colorScheme: colorScheme,
         scaffoldBackgroundColor: corCinza,
+        textTheme: TextTheme(),
         appBarTheme: const AppBarTheme(
           backgroundColor: corCinza,
           foregroundColor: Colors.white,
