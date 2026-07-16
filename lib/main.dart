@@ -1,3 +1,4 @@
+import 'package:calculadora_imc/page_results.dart';
 import 'package:flutter/material.dart';
 import 'main_screen.dart';
 
@@ -27,7 +28,11 @@ class CalculadoraIMC extends StatelessWidget {
           shadowColor: Colors.black,
         ),
       ),
-      home: MainScreen(),
+      initialRoute: "/",
+      routes: {
+        "/": (context) => MainScreen(),
+        "/resultado": (context) => PageResults(),
+      },
     );
   }
 }

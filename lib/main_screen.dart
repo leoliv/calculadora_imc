@@ -209,11 +209,21 @@ class _MainScreen extends State<MainScreen> {
               ],
             ),
           ),
-          Container(
-            color: kColorContainerBottom,
-            width: double.infinity,
-            height: kHeightContainerBottom,
-            margin: .only(top: 10),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/resultado");
+            },
+            child: Container(
+              alignment: .center,
+              color: kColorContainerBottom,
+              width: double.infinity,
+              height: kHeightContainerBottom,
+              margin: .only(top: 10),
+              child: Text(
+                "CALCULAR",
+                style: kLargeNumberStyle,
+              ),
+            ),
           ),
         ],
       ),

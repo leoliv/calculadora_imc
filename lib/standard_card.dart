@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class StandardCard extends StatelessWidget {
   const StandardCard({
-    required this.color,
-    required this.child,
-    required this.onTap,
     super.key,
+    required this.color,
+    required this.onTap,
+    required this.child,
   });
 
   final Color color;
