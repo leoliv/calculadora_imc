@@ -1,6 +1,5 @@
-import 'package:calculadora_imc/page_results.dart';
 import 'package:flutter/material.dart';
-import 'main_screen.dart';
+import 'pages/main_screen.dart';
 
 void main() => runApp(CalculadoraIMC());
 
@@ -29,10 +28,7 @@ class CalculadoraIMC extends StatelessWidget {
         ),
       ),
       initialRoute: "/",
-      routes: {
-        "/": (context) => MainScreen(),
-        "/resultado": (context) => PageResults(),
-      },
+      routes: {"/": (context) => MainScreen()},
     );
   }
 }

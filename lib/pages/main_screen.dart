@@ -1,10 +1,13 @@
-import 'package:calculadora_imc/around_button.dart';
+import 'package:calculadora_imc/imc_calculator.dart';
+import 'package:calculadora_imc/components/around_button.dart';
+import 'package:calculadora_imc/components/button_action.dart';
 import 'package:calculadora_imc/consts.dart';
+import 'package:calculadora_imc/pages/page_results.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'content_icon.dart';
-import 'standard_card.dart';
+import '../components/content_icon.dart';
+import '../components/standard_card.dart';
 
 enum Sex { male, female, none }
 
@@ -18,7 +21,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreen extends State<MainScreen> {
-  Sex colorSelected = Sex.none;
+  Sex sexSelected = Sex.none;
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +36,10 @@ class _MainScreen extends State<MainScreen> {
                   child: StandardCard(
                     onTap: () {
                       setState(() {
-                        colorSelected = Sex.male;
+                        sexSelected = Sex.male;
                       });
                     },
-                    color: colorSelected == Sex.male
+                    color: sexSelected == Sex.male
                         ? kActiveColorStandardCard
                         : kInactiveColorStandardCard,
                     child: ContentIcon(
@@ -49,10 +52,10 @@ class _MainScreen extends State<MainScreen> {
                   child: StandardCard(
                     onTap: () {
                       setState(() {
-                        colorSelected = Sex.female;
+                        sexSelected = Sex.female;
                       });
                     },
-                    color: colorSelected == Sex.female
+                    color: sexSelected == Sex.female
                         ? kActiveColorStandardCard
                         : kInactiveColorStandardCard,
                     child: ContentIcon(
@@ -209,21 +212,26 @@ class _MainScreen extends State<MainScreen> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, "/resultado");
+          ButtonAction(
+            title: "CALCULAR",
+            onPressed: () {
+              ImcCalculator calc = ImcCalculator(
+                height: kHeightInCm.toDouble(),
+                weight: kWeightInKg.toInt(),
+              );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PageResults(
+                    resultImc: calc.calcularImc(),
+                    resultText: calc.obterResultado(),
+                    interpret: calc.obterInterpretacao(),
+                    resultColor: calc.obterResultadoColor(),
+                    sex: sexSelected,
+                  ),
+                ),
+              );
             },
-            child: Container(
-              alignment: .center,
-              color: kColorContainerBottom,
-              width: double.infinity,
-              height: kHeightContainerBottom,
-              margin: .only(top: 10),
-              child: Text(
-                "CALCULAR",
-                style: kLargeNumberStyle,
-              ),
-            ),
           ),
         ],
       ),

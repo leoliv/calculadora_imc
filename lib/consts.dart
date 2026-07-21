@@ -16,3 +16,24 @@ const kLargeNumberStyle = TextStyle(
   fontSize: 50,
   fontWeight: .w900,
 );
+
+const kLargeButtonTextStyle = TextStyle(
+  fontSize: 30,
+  fontWeight: .bold,
+);
+
+var kResultTextStyle = TextStyle(
+  fontSize: 30,
+  fontWeight: .w700,
+);
+
+const kImcTextStyle = TextStyle(
+  fontSize: 100,
+  fontWeight: .w700,
+  color: Colors.black,
+);
+
+const kBodyTextStyle = TextStyle(
+  fontSize: 22,
+  color: Colors.black,
+);
