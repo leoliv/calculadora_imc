@@ -227,7 +227,7 @@ class _MainScreen extends State<MainScreen> {
                     resultText: calc.obterResultado(),
                     interpret: calc.obterInterpretacao(),
                     resultColor: calc.obterResultadoColor(),
-                    sex: sexSelected,
+                    sex: calc.sexColor(sexSelected),
                   ),
                 ),
               );

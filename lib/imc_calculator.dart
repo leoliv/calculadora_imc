@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:calculadora_imc/pages/main_screen.dart';
 import 'package:flutter/material.dart';
 
 class ImcCalculator {
@@ -41,6 +42,16 @@ class ImcCalculator {
       return "Excelente! Seu peso está normal!";
     } else {
       return "Você está com o peso muito baixo. Coloque algumas refeições extras a cada 3 horas.";
+    }
+  }
+
+  Color sexColor(Sex sex) {
+    if (sex == Sex.male) {
+      return Colors.blue;
+    } else if (sex == Sex.female) {
+      return const Color(0xFFFF4181);
+    } else {
+      return Colors.white;
     }
   }
 }

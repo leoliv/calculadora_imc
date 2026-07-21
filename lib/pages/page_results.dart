@@ -1,7 +1,6 @@
 import 'package:calculadora_imc/components/button_action.dart';
 import 'package:calculadora_imc/consts.dart';
 import 'package:calculadora_imc/components/standard_card.dart';
-import 'package:calculadora_imc/pages/main_screen.dart';
 import 'package:flutter/material.dart';
 
 class PageResults extends StatelessWidget {
@@ -9,7 +8,7 @@ class PageResults extends StatelessWidget {
   final String resultText;
   final String interpret;
   final Color resultColor;
-  final Sex sex;
+  final Color sex;
   const PageResults({
     super.key,
     required this.resultImc,
@@ -34,9 +33,7 @@ class PageResults extends StatelessWidget {
               child: Text(
                 "RESULTADO",
                 style: kResultTextStyle.copyWith(
-                  color: sex == Sex.male
-                      ? Colors.blue
-                      : const Color(0xFFFF4181),
+                  color: sex,
                 ),
               ),
             ),

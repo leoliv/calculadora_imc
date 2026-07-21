@@ -1,4 +1,3 @@
-import 'package:calculadora_imc/pages/main_screen.dart';
 import 'package:calculadora_imc/pages/page_results.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,7 +13,7 @@ void main() {
             resultText: 'Peso Normal',
             interpret: 'Tudo certo',
             resultColor: Colors.lightGreen,
-            sex: Sex.none,
+            sex: Colors.white,
           ),
         ),
       );
